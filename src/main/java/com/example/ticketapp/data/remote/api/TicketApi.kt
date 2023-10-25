@@ -14,12 +14,12 @@ interface TicketApi {
     suspend fun getTicket():List<TicketDto>
 
     @GET("/api/Ticket/{id}")
-    suspend fun getTicketById(@Path("TicketId") ticketId: Int) : Resource<TicketDto>
+    suspend fun getTicketById(@Path("TicketId") ticketId: Int) : Response<TicketDto>
 
     @POST("/api/Ticket")
-    suspend fun postTicket(@Body ticket: TicketDto): Resource<TicketDto>
+    suspend fun postTicket(@Body ticket: TicketDto): Response<TicketDto>
 
     @DELETE("/api/Ticket/{id}")
-    suspend fun deleteTicket(@Path("TicketId") ticketId: Int) : Resource<TicketDto>
+    suspend fun deleteTicket(@Path("TicketId") ticketId: Int) : Response<TicketDto>
 
 }
