@@ -17,13 +17,14 @@ import javax.inject.Inject
 class ClienteRepository @Inject constructor(
     private val api: ClienteApi
 ) {
-    fun getCoins(): Flow<Resource<List<ClienteDto>>> = flow {
+
+   fun getClientes():Flow<Resource<List<ClienteDto>>> = flow {
         try {
             emit(Resource.Loading()) //indicar que estamos cargando
 
-            val coins = api.getCliente() //descarga las monedas de internet, se supone quedemora algo
+            val clientes = api.getCliente() //descarga las monedas de internet, se supone quedemora algo
 
-            emit(Resource.Success(coins)) //indicar que se cargo correctamente y pasarle las monedas
+            emit(Resource.Success(clientes)) //indicar que se cargo correctamente y pasarle las monedas
         } catch (e: HttpException) {
             //error general HTTP
             emit(Resource.Error(e.message ?: "Error HTTP GENERAL"))
@@ -32,6 +33,14 @@ class ClienteRepository @Inject constructor(
             emit(Resource.Error(e.message ?: "verificar tu conexion a internet"))
         }
     }
+    /*
+    suspend fun getClientes() : List<ClienteDto>
+    {
+        return withContext(Dispatchers.IO){
+            val response = api.getCliente()
+            response.body()?: emptyList()
+        }
+    }*/
 
     suspend fun postCliente(cliente : ClienteDto) : ClienteDto?{
         return try {

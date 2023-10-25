@@ -15,7 +15,7 @@ import retrofit2.Response
 class TicketRepository @Inject constructor(
     private val api: TicketApi
 ) {
-    fun getCoins(): Flow<Resource<List<TicketDto>>> = flow {
+    fun getTickets(): Flow<Resource<List<TicketDto>>> = flow {
         try {
             emit(Resource.Loading()) //indicar que estamos cargando
 

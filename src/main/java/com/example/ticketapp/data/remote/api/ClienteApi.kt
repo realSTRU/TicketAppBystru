@@ -13,7 +13,7 @@ import retrofit2.http.Path
 interface ClienteApi {
 
     @GET("/api/Cliente")
-    suspend fun getCliente():List<ClienteDto>
+    suspend fun getCliente(): List<ClienteDto>
 
     @GET("/api/Cliente/{id}")
     suspend fun getClienteById(@Path("ClienteId") clienteId: Int) : Response<ClienteDto>
